@@ -1,0 +1,5 @@
+viewmodel/AccessDataViewModel.class
+com/mycompany/mvvmexample/FirestoreContext.class
+models/Person.class
+modelview/AccessFBView.class
+com/mycompany/mvvmexample/App.class
