@@ -96,6 +96,7 @@ public class AccessFBView {
     }
 
     public boolean readFirebase() {
+        outputField.clear();
         key = false;
 
         //asynchronously retrieve all documents
