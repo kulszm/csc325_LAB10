@@ -31,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import models.Person;
 
 public class AccessFBView {
@@ -43,15 +44,23 @@ public class AccessFBView {
     private TextField ageField;
     @FXML
     private Button writeButton;
+    
     @FXML
     private Button regRecord;
     
      @FXML
+    private Button delete;
+    
+     @FXML
     private TableView<Person> PersonTable;
+     
     @FXML
     private TableColumn<Person, String> names;
+    
     @FXML
     private TableColumn<Person, String> majors;
+    
+    
     @FXML
     private TableColumn<Person, Integer> ages;
 
@@ -71,12 +80,18 @@ public class AccessFBView {
         return listOfUsers;
     }
 
+  //  @Override
     void initialize() {
 
         AccessDataViewModel accessDataViewModel = new AccessDataViewModel();
         nameField.textProperty().bindBidirectional(accessDataViewModel.userNameProperty());
         majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
+        /*
+        names.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        majors.setCellValueFactory(new PropertyValueFactory<Person, String>("major"));
+        ages.setCellValueFactory(new PropertyValueFactory<Person, Integer>("age"));
+        */
     }
 
     @FXML
