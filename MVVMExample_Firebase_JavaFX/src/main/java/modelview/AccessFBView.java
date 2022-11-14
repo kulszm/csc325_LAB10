@@ -115,6 +115,8 @@ public class AccessFBView {
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
 
+        
+        
         nameField.clear();
         majorField.clear();
         ageField.clear();
@@ -122,7 +124,8 @@ public class AccessFBView {
     }
 
     public boolean readFirebase() {
-        outputField.clear();
+       // outputField.clear();
+        PersonTable.getItems().clear();
         key = false;
 
         //asynchronously retrieve all documents
