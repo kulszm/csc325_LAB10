@@ -50,7 +50,7 @@ public class AccessFBView {
     private Button regRecord;
     
      @FXML
-    private Button delete;
+    private Button deleteButton;
     
      @FXML
     private TableView<Person> personTable;
