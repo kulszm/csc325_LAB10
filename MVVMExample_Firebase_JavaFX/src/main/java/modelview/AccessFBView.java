@@ -27,6 +27,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import models.Person;
@@ -43,6 +45,15 @@ public class AccessFBView {
     private Button writeButton;
     @FXML
     private Button regRecord;
+    
+     @FXML
+    private TableView<Person> PersonTable;
+    @FXML
+    private TableColumn<Person, String> names;
+    @FXML
+    private TableColumn<Person, String> majors;
+    @FXML
+    private TableColumn<Person, Integer> ages;
 
     private void regRecord(ActionEvent event) {
         registerUserInFB();
