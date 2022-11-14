@@ -9,6 +9,7 @@ import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.OidcProviderConfig.CreateRequest;
 import com.google.firebase.auth.UserRecord;
 import com.mycompany.mvvmexample.FirestoreContext;
@@ -52,7 +53,7 @@ public class AccessFBView {
     private Button delete;
     
      @FXML
-    private TableView<Person> PersonTable;
+    private TableView<Person> personTable;
      
     @FXML
     private TableColumn<Person, String> names;
@@ -125,7 +126,7 @@ public class AccessFBView {
 
     public boolean readFirebase() {
        // outputField.clear();
-        PersonTable.getItems().clear();
+        personTable.getItems().clear();
         key = false;
 
         //asynchronously retrieve all documents
@@ -156,10 +157,19 @@ public class AccessFBView {
         }
         return key;
     }
+    
+    
+    @FXML
+    private void deleteEntry(ActionEvent event) {
+        delete.setOnAction(e -> {
+            Person selectedItem = personTable.getSelectionModel().getSelectedItem();
+            personTable.getItems().remove(selectedItem);
+        });
+    }
 
-    private void registerUserInFB() {
-        CreateRequest request;
-        request = new CreateRequest()
+
+       private void registerUserInFB() throws FirebaseAuthException {
+        UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                 .setEmail("user@example.com")
                 .setEmailVerified(false)
                 .setPassword("secretPassword")
@@ -170,6 +180,8 @@ public class AccessFBView {
 
         UserRecord userRecord = FirebaseAuth.getInstance().createUser(request);
         System.out.println("Successfully created new user: " + userRecord.getUid());
+
+    
 
     }
 }
